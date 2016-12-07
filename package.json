@@ -1,0 +1,64 @@
+{
+  "version": "0.0.0-development",
+  "name": "logress",
+  "description": "log your progress, with Logress!",
+  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
+  "homepage": "https://github.com/ahmadnassri/logress",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmadnassri/logress.git"
+  },
+  "license": "ISC",
+  "main": "lib/node4/index.js",
+  "keywords": [
+    "logress"
+  ],
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "bugs": {
+    "url": "https://github.com/ahmadnassri/logress/issues"
+  },
+  "scripts": {
+    "compile": "babel -q src",
+    "test": "BABEL_ENV=test tap test --reporter spec --node-arg=--require --node-arg=babel-register",
+    "example": "BABEL_ENV=test babel-node example.js",
+    "coverage": "BABEL_ENV=test tap test --reporter silent --coverage --nyc-arg=--require --nyc-arg=babel-register",
+    "codeclimate": "BABEL_ENV=test tap --coverage-report=text-lcov | codeclimate-test-reporter",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "standard": {
+    "ignore": [
+      "lib/**"
+    ]
+  },
+  "echint": {
+    "ignore": [
+      "lib/**"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "0.0.9",
+    "babel-register": "^6.18.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "cz-conventional-changelog": "^1.2.0",
+    "echint": "^2.1.0",
+    "semantic-release": "^6.3.5",
+    "snazzy": "^5.0.0",
+    "tap": "^8.0.1"
+  },
+  "dependencies": {
+    "cli-spinners": "^0.3.0"
+  }
+}
