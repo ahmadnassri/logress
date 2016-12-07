@@ -24,7 +24,7 @@ import Logress from 'logress'
 
 const log = new Logress()
 
-log.start(1, 'Loding ...')
+log.start(1, 'Loading ...')
 
 setTimeout(() => log.update(1, 'still loading!', { color: 'yellow' }), 1000)
 setTimeout(() => log.start(2, 'monkeys are cuter than unicorns!', 'monkey'), 2000)
