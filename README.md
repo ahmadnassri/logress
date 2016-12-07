@@ -9,6 +9,8 @@
 [![Dependency Status][dependencyci-image]][dependencyci-url]
 [![Dependencies][david-image]][david-url]
 
+![demo](demo.gif)
+
 ## Install
 
 ```bash
