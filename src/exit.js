@@ -5,4 +5,3 @@ export default function exit (listener) {
   process.once('SIGINT', sigint || exit)
   process.once('SIGTERM', sigterm || exit)
 }
-
