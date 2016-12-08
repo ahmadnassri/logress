@@ -156,7 +156,7 @@ log.prefix('line1', '*')
 
 You can use any of the [provided spinners][cli-spinners] or create your own, See `example.js` in this repo if you want to test out different spinners.
 
-## Targetted Builds
+## Targeted Builds
 
 an optimized build is made available for every major Node.js version marked as [Active LTS](https://github.com/nodejs/LTS).
 
