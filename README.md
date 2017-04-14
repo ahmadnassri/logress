@@ -154,21 +154,6 @@ log.prefix('line1', '*')
 
 You can use any of the [provided spinners][cli-spinners] or create your own, See `example.js` in this repo if you want to test out different spinners.
 
-## Targeted Builds
-
-an optimized build is made available for every major Node.js version marked as [Active LTS](https://github.com/nodejs/LTS).
-
-```javascript
-// Node 7
-const logress = require('logress/lib/node7')
-
-// Node 6
-const logress = require('logress/lib/node6')
-
-// Node 4 (Default)
-var logress = require('logress')
-```
-
 ----
 > :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
 > License: [ISC][license-url] &nbsp;&middot;&nbsp;
