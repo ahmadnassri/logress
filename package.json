@@ -9,7 +9,7 @@
     "url": "https://github.com/ahmadnassri/logress.git"
   },
   "license": "ISC",
-  "main": "lib/node4/index.js",
+  "main": "lib/index.js",
   "keywords": [
     "logress"
   ],
