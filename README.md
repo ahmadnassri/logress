@@ -9,7 +9,7 @@
 [![Dependency Status][dependencyci-image]][dependencyci-url]
 [![Dependencies][david-image]][david-url]
 
-![demo](demo.gif)
+![demo](demo/demo.gif)
 
 ## Install
 
