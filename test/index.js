@@ -1,9 +1,11 @@
-import Cursor from '../src/cursor'
-import Logress from '../src/index'
-import Spinner from '../src/spinner'
-import { PassThrough } from 'stream'
-import { stripColor } from 'chalk'
-import { test } from 'tap'
+'use strict'
+
+const chalk = require('chalk')
+const Cursor = require('../lib/cursor')
+const Logress = require('../lib/index')
+const PassThrough = require('stream').PassThrough
+const Spinner = require('../lib/spinner')
+const tap = require('tap')
 
 const noop = () => {}
 
@@ -19,7 +21,7 @@ function Stream () {
   stream.on('data', (chunk) => stream.chunks.push(chunk))
   stream.on('finish', () => {
     stream.body = Buffer.concat(stream.chunks).toString()
-    stream.body = stripColor(stream.body)
+    stream.body = chalk.stripColor(stream.body)
     stream.body = stream.body.replace(/\n+$/, '')
   })
 
@@ -33,7 +35,7 @@ const spinner = new Spinner({
   frames: ['.']
 })
 
-test('default values', (assert) => {
+tap.test('default values', (assert) => {
   assert.plan(5)
 
   const progress = new Logress({ cursor })
@@ -45,7 +47,7 @@ test('default values', (assert) => {
   assert.same(progress._intervals, {})
 })
 
-test('chainable calls', (assert) => {
+tap.test('chainable calls', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -57,7 +59,7 @@ test('chainable calls', (assert) => {
   stream.end(() => assert.equal(stream.body, '. foo'))
 })
 
-test('write one line', (assert) => {
+tap.test('write one line', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -69,7 +71,7 @@ test('write one line', (assert) => {
   stream.end(() => assert.equal(stream.body, '. foo'))
 })
 
-test('write two lines', (assert) => {
+tap.test('write two lines', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -82,7 +84,7 @@ test('write two lines', (assert) => {
   stream.end(() => assert.equal(stream.body, '. foo\n. bar'))
 })
 
-test('ignore consecutive calls to `.start()`', (assert) => {
+tap.test('ignore consecutive calls to `.start()`', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -97,7 +99,7 @@ test('ignore consecutive calls to `.start()`', (assert) => {
   assert.equal(Object.keys(progress._indexes).length, 2)
 })
 
-test('.success()', (assert) => {
+tap.test('.success()', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -110,7 +112,7 @@ test('.success()', (assert) => {
   stream.end(() => assert.match(stream.body, /✔|√ foo/))
 })
 
-test('.symbol()', (assert) => {
+tap.test('.symbol()', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -134,12 +136,12 @@ test('.symbol()', (assert) => {
 
     .end()
 
-  let expected = ['ℹ|i info', '✔|√ succeed', '✔|√ success', '⚠|‼ warn', '⚠|‼ warning', '✖|× fail', '✖|× error']
+  const expected = ['ℹ|i info', '✔|√ succeed', '✔|√ success', '⚠|‼ warn', '⚠|‼ warning', '✖|× fail', '✖|× error']
 
   stream.end(() => assert.match(stream.body, new RegExp(expected.join('\n'))))
 })
 
-test('.set()', (assert) => {
+tap.test('.set()', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
@@ -151,7 +153,7 @@ test('.set()', (assert) => {
   stream.end(() => assert.equal(stream.body, '@'))
 })
 
-test('.stop()', (assert) => {
+tap.test('.stop()', (assert) => {
   assert.plan(1)
 
   const stream = Stream()
