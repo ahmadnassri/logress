@@ -1,26 +1,19 @@
-# Logress [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
+# Logress [![version][npm-version]][npm-url] [![License][license-image]][license-url] [![Build Status][travis-image]][travis-url] [![Downloads][npm-downloads]][npm-url] [![Coverage Status][codeclimate-coverage]][codeclimate-url]
 
 > Log your progress, with Logress!
-
-[![Build Status][travis-image]][travis-url]
-[![Downloads][npm-downloads]][npm-url]
-[![Code Climate][codeclimate-quality]][codeclimate-url]
-[![Coverage Status][codeclimate-coverage]][codeclimate-url]
-[![Dependency Status][dependencyci-image]][dependencyci-url]
-[![Dependencies][david-image]][david-url]
 
 ![demo](demo/demo.gif)
 
 ## Install
 
 ```bash
-npm install --only=production --save logress
+npm install --production --save logress
 ```
 
 ## Usage
 
 ```javascript
-import Logress from 'logress'
+const Logress = require('logress')
 
 const log = new Logress()
 
@@ -36,10 +29,10 @@ setTimeout(() => log.start(2, 'monkeys are cuter than unicorns!', 'monkey'), 200
 
 > **Note**: It will gracefully not do anything when there's no TTY or when in a CI.
 
-option        | required | type                            | description                    | default
+option        | required | type                            | description                    | default         
 ------------- | -------- | ------------------------------- | ------------------------------ | ----------------
-**`stream`**  | `✖`      | [`WritableStream`][docs-stream] | a Stream to write the output   | `process.stderr`
-**`spinner`** | `✖`      | `String`, `Object`              | a Default [Spinner](#spinners) | `dots`
+**`stream`**  | ✖        | [`WritableStream`][docs-stream] | a Stream to write the output   | `process.stderr`
+**`spinner`** | ✖        | `String`, `Object`              | a Default [Spinner](#spinners) | `dots`          
 
 ```javascript
 const log = new Logress({
@@ -54,7 +47,7 @@ const log = new Logress({
 
 argument      | required | type     | description  | default
 ------------- | -------- | -------- | ------------ | -------
-**`message`** | `✖`      | `String` | goodbye text | ``
+**`message`** | ✖        | `String` | goodbye text | `-`    
 
 ```javascript
 new Logress().end('bye!')
@@ -64,11 +57,21 @@ new Logress().end('bye!')
 
 > starts a new spinner instance on the line, sets the line text. _(will create the line if it doesn't exit)_
 
-argument      | required | type               | description                                     | default
+argument      | required | type               | description                                     | default                 
 ------------- | -------- | ------------------ | ----------------------------------------------- | ------------------------
-**`id`**      | `✔`      | `String`           | line identifier                                 | ``
-**`text`**    | `✖`      | `String`           | line text                                       | ``
-**`spinner`** | `✖`      | `String`, `Object` | assign a new [Spinner](#spinners) for this line | inherits default Spinner
+**`id`**      | ✔        | `String`           | line identifier                                 | `-`                     
+**`text`**    | ✖        | `String`           | line text                                       | `-`                     
+**`spinner`** | ✖        | `String`, `Object` | assign a new [Spinner](#spinners) for this line | inherits default Spinner
+
+### `log.update(id[, text][, spinner])`
+
+> similar to `log.start()` but will update existing spinner rather than start a new one
+
+argument      | required | type               | description                                     | default                 
+------------- | -------- | ------------------ | ----------------------------------------------- | ------------------------
+**`id`**      | ✔        | `String`           | line identifier                                 | `-`                     
+**`text`**    | ✖        | `String`           | line text                                       | `-`                     
+**`spinner`** | ✖        | `String`, `Object` | assign a new [Spinner](#spinners) for this line | inherits default Spinner
 
 ```javascript
 const log = new Logress({ spinner: 'monkey' })
@@ -83,8 +86,8 @@ log.start('angry', 'an angry monkey!', { color: 'red' })
 
 argument   | required | type     | description     | default
 ---------- | -------- | -------- | --------------- | -------
-**`id`**   | `✔`      | `String` | line identifier | ``
-**`text`** | `✖`      | `String` | line text       | ``
+**`id`**   | ✔        | `String` | line identifier | `-`    
+**`text`** | ✖        | `String` | line text       | `-`    
 
 ```javascript
 log.stop('ape')
@@ -97,8 +100,8 @@ log.stop('angry', 'no more angry monkey!')
 
 argument   | required | type     | description     | default
 ---------- | -------- | -------- | --------------- | -------
-**`id`**   | `✔`      | `String` | line identifier | ``
-**`text`** | `✖`      | `String` | line text       | ``
+**`id`**   | ✔        | `String` | line identifier | `-`    
+**`text`** | ✖        | `String` | line text       | `-`    
 
 ```javascript
 log.set('new', 'custom text')
@@ -112,11 +115,11 @@ log.set('new', 'custom text')
 > - will create the line if it doesn't exit
 > - will match `prefix` against (`:info:`, `:success:`, `:warning:`, `:error:`) and replace with an emoji if matched
 
-argument     | required | type     | description     | default
+argument     | required | type     | description     | default       
 ------------ | -------- | -------- | --------------- | --------------
-**`id`**     | `✔`      | `String` | line identifier | ``
-**`prefix`** | `✔`      | `String` | line prefix     | ``
-**`text`**   | `✖`      | `String` | line text       | previous value
+**`id`**     | ✔        | `String` | line identifier | `-`           
+**`prefix`** | ✔        | `String` | line prefix     | `-`           
+**`text`**   | ✖        | `String` | line text       | previous value
 
 ```javascript
 log.prefix('line1', '*')
@@ -124,55 +127,56 @@ log.prefix('line1', '*')
 
 ### `log.info(id, [, text])`
 
-> alias to `log.prefix(id, 'ℹ', text)
+> alias to \`log.prefix(id, 'ℹ', text)
 
 ### `log.success(id, [, text])`
 
-> alias to `log.prefix(id, '✔', text)
+> alias to \`log.prefix(id, '✔', text)
 
 ### `log.succeed(id, [, text])`
 
-> alias to `log.prefix(id, '✔', text)
+> alias to \`log.prefix(id, '✔', text)
 
 ### `log.warning(id, [, text])`
 
-> alias to `log.prefix(id, '⚠', text)
+> alias to \`log.prefix(id, '⚠', text)
 
 ### `log.warn(id, [, text])`
 
-> alias to `log.prefix(id, '⚠', text)
+> alias to \`log.prefix(id, '⚠', text)
 
 ### `log.error(id, [, text])`
 
-> alias to `log.prefix(id, '✖', text)
+> alias to \`log.prefix(id, '✖', text)
 
 ### `log.fail(id, [, text])`
 
-> alias to `log.prefix(id, '✖', text)
+> alias to \`log.prefix(id, '✖', text)
 
 ### Spinners
 
-You can use any of the [provided spinners][cli-spinners] or create your own, See `example.js` in this repo if you want to test out different spinners.
+You can use any of the [provided spinners][cli-spinners] or create your own, See [`demo/index.js`][demo] in this repo if you want to test out different spinners.
 
-----
-> :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
-> License: [ISC][license-url] &nbsp;&middot;&nbsp;
-> Github: [@ahmadnassri](https://github.com/ahmadnassri) &nbsp;&middot;&nbsp;
+---
+> License: [ISC][license-url] &bull; 
+> Copyright: [ahmadnassri.com](https://www.ahmadnassri.com) &bull; 
+> Github: [@ahmadnassri](https://github.com/ahmadnassri) &bull; 
 > Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
-[cli-spinners]: https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
-[codeclimate-coverage]: https://img.shields.io/codeclimate/coverage/github/ahmadnassri/logress.svg?style=flat-square
-[codeclimate-quality]: https://img.shields.io/codeclimate/github/ahmadnassri/logress.svg?style=flat-square
-[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/logress
-[david-image]: https://img.shields.io/david/ahmadnassri/logress.svg?style=flat-square
-[david-url]: https://david-dm.org/ahmadnassri/logress
-[dependencyci-image]: https://dependencyci.com/github/ahmadnassri/logress/badge?style=flat-square
-[dependencyci-url]: https://dependencyci.com/github/ahmadnassri/logress
-[docs-stream]: https://nodejs.org/api/stream.html#stream_writable_streams
 [license-url]: http://choosealicense.com/licenses/isc/
-[npm-downloads]: https://img.shields.io/npm/dm/logress.svg?style=flat-square
-[npm-license]: https://img.shields.io/npm/l/logress.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/logress
-[npm-version]: https://img.shields.io/npm/v/logress.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/ahmadnassri/logress.svg?style=flat-square
-[travis-url]: https://travis-ci.org/ahmadnassri/logress
+[license-image]: https://img.shields.io/github/license/ahmadnassri/npm-starter-kit.svg?style=flat-square
+
+[travis-url]: https://travis-ci.org/ahmadnassri/npm-starter-kit
+[travis-image]: https://img.shields.io/travis/ahmadnassri/npm-starter-kit.svg?style=flat-square
+
+[npm-url]: https://www.npmjs.com/package/npm-starter-kit
+[npm-version]: https://img.shields.io/npm/v/npm-starter-kit.svg?style=flat-square
+[npm-downloads]: https://img.shields.io/npm/dm/npm-starter-kit.svg?style=flat-square
+
+[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/npm-starter-kit
+[codeclimate-coverage]: https://api.codeclimate.com/v1/badges/[REPLACEME]/test_coverage?style=flat-square
+
+
+[cli-spinners]: https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
+[docs-stream]: https://nodejs.org/api/stream.html#stream_writable_streams
+[demo]: demo/index.js
