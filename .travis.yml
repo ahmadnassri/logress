@@ -32,7 +32,6 @@ jobs:
       before_script: test-reporter before-build
       script: npm run test:tap
       after_script: test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-      if: env(CC_TEST_REPORTER_ID) IS present
 
     - stage: release
       node: 9
@@ -40,5 +39,3 @@ jobs:
       script: npx semantic-release
       if: branch = master
       if: type IN (push)
-      if: env(GH_TOKEN) IS present
-      if: env(NPM_TOKEN) IS present
