@@ -164,17 +164,17 @@ You can use any of the [provided spinners][cli-spinners] or create your own, See
 > Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
 [license-url]: http://choosealicense.com/licenses/isc/
-[license-image]: https://img.shields.io/github/license/ahmadnassri/npm-starter-kit.svg?style=flat-square
+[license-image]: https://img.shields.io/github/license/ahmadnassri/logress.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/ahmadnassri/npm-starter-kit
-[travis-image]: https://img.shields.io/travis/ahmadnassri/npm-starter-kit.svg?style=flat-square
+[travis-url]: https://travis-ci.org/ahmadnassri/logress
+[travis-image]: https://img.shields.io/travis/ahmadnassri/logress.svg?style=flat-square
 
-[npm-url]: https://www.npmjs.com/package/npm-starter-kit
-[npm-version]: https://img.shields.io/npm/v/npm-starter-kit.svg?style=flat-square
-[npm-downloads]: https://img.shields.io/npm/dm/npm-starter-kit.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/logress
+[npm-version]: https://img.shields.io/npm/v/logress.svg?style=flat-square
+[npm-downloads]: https://img.shields.io/npm/dm/logress.svg?style=flat-square
 
-[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/npm-starter-kit
-[codeclimate-coverage]: https://api.codeclimate.com/v1/badges/[REPLACEME]/test_coverage?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/logress
+[codeclimate-coverage]: https://api.codeclimate.com/v1/badges/32ee905e585d323b047c/test_coverage?style=flat-square
 
 
 [cli-spinners]: https://github.com/sindresorhus/cli-spinners/blob/master/spinners.json
